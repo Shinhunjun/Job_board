@@ -1,50 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-        <link rel="stylesheet" href="./resources/CSS/index.css">
-    </head>
-    <body>
-        <!-- Banner Section -->
-         <div class="banner">
-            <h1>Hello Neta</h1>
-            <img id="wolf" src="./resources/images/wolfpng.png" alt="">
-            <h2>You own me list:</h2>
-            <ol>
-                <li>Two bottles of Patron</li>
-                <li>Mini Schweppes refrigerator</li>
-            </ol>
-            <button>Dont click</button>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Board</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Job Board</h1>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Jobs</a></li>
+                    <li><a href="#">Login</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
         </div>
-
-        <!-- Main section -->
-         <div>
-            <span class="bold" id="mainsection">Main section</span>
-            <p class="bold">The Bootstarp is on its way</p>
-            <img src="./resources/images/grined_harder.webp" alt="i GRINED HARDER">
-            <form action="">
-                <input type="text">
-                <input type="text" value="Submit">
-            </form>
-            <div>
+    </header>
+    
+    <main>
+        <div class="container">
+            <section class="search">
+                <input type="text" placeholder="Search for jobs...">
+                <button>Search</button>
+            </section>
+            
+            <section class="filters">
+                <h2>Filter by:</h2>
+                <select>
+                    <option value="location">Location</option>
+                    <option value="company">Company</option>
+                    <option value="type">Job Type</option>
+                </select>
+            </section>
+            
+            <section class="job-listings">
+                <h2>Job Listings</h2>
                 <ul>
                     <li>
-                        <div></div><span>First in list</span>
+                        <h3>Software Developer</h3>
+                        <p>Company: Tech Solutions</p>
+                        <p>Location: New York, NY</p>
+                        <button>Apply</button>
                     </li>
                     <li>
-                        <div></div><span>Second in list</span>
+                        <h3>Graphic Designer</h3>
+                        <p>Company: Creative Inc.</p>
+                        <p>Location: Los Angeles, CA</p>
+                        <button>Apply</button>
                     </li>
-                    <li>
-                        <div></div><span>Third in list</span>
-                    </li>
+                    <!-- More job listings -->
                 </ul>
-            </div>
-            <h3>#TheRomanian</h3>
-         </div>
-
-    </body>
+            </section>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Job Board. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
 </html>
-
-<!-- /Users/danielhasan/Desktop/Projects/Hello_html/index.html -->
