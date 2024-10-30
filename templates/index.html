@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flask app</title>
+    <!-- Import Retro Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <!-- Add your CSS here or link to an external stylesheet -->
+    <style>
+        /* Retro 90's Game Style */
+        body {
+            font-family: 'Press Start 2P', cursive;
+            background-color: #000;
+            color: #00ff00;
+            margin: 0;
+            line-height: 1.6;
+        }
+        header, nav, section, footer {
+            max-width: 960px;
+            margin: auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        header {
+            text-align: center;
+            background-color: #111;
+            border-bottom: 3px solid #00ff00;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+        nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: #111;
+            border-bottom: 3px solid #00ff00;
+        }
+        nav a {
+            color: #00ff00;
+            text-decoration: none;
+            padding: 10px;
+            font-size: 0.9em;
+        }
+        nav a:hover {
+            background-color: #00ff00;
+            color: #000;
+        }
+        section {
+            background-color: #111;
+            margin-bottom: 20px;
+            border: 3px solid #00ff00;
+        }
+        section h2 {
+            font-size: 1.5em;
+            text-align: center;
+            margin-top: 0;
+        }
+        .intro p, .cta p, #contact p {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .feature-item {
+            background-color: #000;
+            border: 3px solid #00ff00;
+            width: 28%;
+            margin: 10px 0;
+            padding: 10px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        .feature-item h3 {
+            font-size: 1.2em;
+            margin-top: 0;
+        }
+        .cta {
+            text-align: center;
+        }
+        .cta a {
+            display: inline-block;
+            background-color: #00ff00;
+            color: #000;
+            padding: 15px 30px;
+            text-decoration: none;
+            border: 3px solid #00ff00;
+            font-size: 1em;
+        }
+        .cta a:hover {
+            background-color: #000;
+            color: #00ff00;
+        }
+        footer {
+            text-align: center;
+            background-color: #111;
+            border-top: 3px solid #00ff00;
+            padding: 10px;
+        }
+        footer p {
+            margin: 5px 0;
+            font-size: 0.8em;
+        }
+        footer a {
+            color: #00ff00;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .feature-item {
+                width: 80%;
+            }
+            nav {
+                flex-direction: column;
+            }
+            nav a {
+                border-top: 1px solid #00ff00;
+            }
+            nav a:first-child {
+                border-top: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Welcome to [Your Job Board Name]</h1>
+    <p>Your gateway to the best opportunities in [Industry/Location]</p>
+</header>
+
+<nav>
+    <a href="#about">About Us</a>
+    <a href="#features">Features</a>
+    <a href="#cta">Get Started</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<section id="about" class="intro">
+    <h2>About Us</h2>
+    <p>[Your Job Board Name] is dedicated to connecting talented professionals with top companies in [Industry/Location]. We provide a streamlined platform for job seekers and employers to find the perfect match.</p>
+</section>
+
+<section id="features" class="features">
+    <h2>Features</h2>
+    <div class="feature-item">
+        <h3>Curated Job Listings</h3>
+        <p>Access a handpicked selection of the best job opportunities tailored to your expertise.</p>
+    </div>
+    <div class="feature-item">
+        <h3>User-Friendly Interface</h3>
+        <p>Easily navigate through job postings with our intuitive and responsive design.</p>
+    </div>
+    <div class="feature-item">
+        <h3>Expert Support</h3>
+        <p>Our team is here to assist you every step of the way, from application to onboarding.</p>
+    </div>
+</section>
+
+<section id="cta" class="cta">
+    <h2>Ready to Take the Next Step?</h2>
+    <p>Join [Your Job Board Name] today and accelerate your career.</p>
+    <a href="#signup">Sign Up Now</a>
+</section>
+
+<section id="contact">
+    <h2>Contact Us</h2>
+    <p>Have questions? Reach out to us at <a href="mailto:support@yourjobboard.com">support@yourjobboard.com</a></p>
+</section>
+
+<footer>
+    <p>&copy; 2023 [Your Job Board Name]. All rights reserved.</p>
+    <p><a href="#privacy">Privacy Policy</a> | <a href="#terms">Terms of Service</a></p>
+</footer>
+
+</body>
+</html>

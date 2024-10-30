@@ -1,0 +1,182 @@
+{% extends "base.html" %}
+
+{% block title %}Job Search{% endblock %}
+
+
+{% block content %}
+
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/jobsearch">Job Search</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
+<div class="job-search-container">
+    <!-- Filter Sidebar -->
+    <aside class="filter-sidebar">
+        <h2>Filter Jobs</h2>
+        <form method="GET" action="/jobsearch">
+            <!-- Keywords -->
+            <div class="filter-group">
+                <label for="keywords">Keywords</label>
+                <input type="text" id="keywords" name="keywords" placeholder="Job title, skills, company">
+            </div>
+            <!-- Location -->
+            <div class="filter-group">
+                <label for="location">Location</label>
+                <input type="text" id="location" name="location" placeholder="City, state, country">
+            </div>
+            <!-- Job Type -->
+            <div class="filter-group">
+                <label for="job_type">Job Type</label>
+                <select id="job_type" name="job_type">
+                    <option value="">Any</option>
+                    <option value="full_time">Full-time</option>
+                    <option value="part_time">Part-time</option>
+                    <option value="contract">Contract</option>
+                    <option value="temporary">Temporary</option>
+                    <option value="internship">Internship</option>
+                    <option value="freelance">Freelance</option>
+                </select>
+            </div>
+            <!-- Industry -->
+            <div class="filter-group">
+                <label for="industry">Industry</label>
+                <select id="industry" name="industry">
+                    <option value="">Any</option>
+                    <option value="it">IT</option>
+                    <option value="healthcare">Healthcare</option>
+                    <option value="finance">Finance</option>
+                    <!-- Add more industries as needed -->
+                </select>
+            </div>
+            <!-- Experience Level -->
+            <div class="filter-group">
+                <label for="experience_level">Experience Level</label>
+                <select id="experience_level" name="experience_level">
+                    <option value="">Any</option>
+                    <option value="entry">Entry-level</option>
+                    <option value="mid">Mid-level</option>
+                    <option value="senior">Senior-level</option>
+                    <option value="executive">Executive</option>
+                </select>
+            </div>
+            <!-- Salary Range -->
+            <div class="filter-group">
+                <label for="salary_min">Salary Range</label>
+                <div class="salary-range">
+                    <input type="number" id="salary_min" name="salary_min" placeholder="Min" min="0">
+                    <input type="number" id="salary_max" name="salary_max" placeholder="Max" min="0">
+                </div>
+            </div>
+            <!-- Posted Date -->
+            <div class="filter-group">
+                <label for="posted_date">Posted Date</label>
+                <select id="posted_date" name="posted_date">
+                    <option value="">Anytime</option>
+                    <option value="24h">Last 24 hours</option>
+                    <option value="7d">Last 7 days</option>
+                    <option value="14d">Last 14 days</option>
+                    <option value="30d">Last 30 days</option>
+                </select>
+            </div>
+            <!-- Company Size -->
+            <div class="filter-group">
+                <label for="company_size">Company Size</label>
+                <select id="company_size" name="company_size">
+                    <option value="">Any</option>
+                    <option value="startup">Startup</option>
+                    <option value="small">Small</option>
+                    <option value="medium">Medium</option>
+                    <option value="large">Large</option>
+                </select>
+            </div>
+            <!-- Education Level -->
+            <div class="filter-group">
+                <label for="education_level">Education Level</label>
+                <select id="education_level" name="education_level">
+                    <option value="">Any</option>
+                    <option value="high_school">High School Diploma</option>
+                    <option value="bachelors">Bachelor's Degree</option>
+                    <option value="masters">Master's Degree</option>
+                    <option value="phd">Ph.D.</option>
+                </select>
+            </div>
+            <!-- Remote Work Availability -->
+            <div class="filter-group">
+                <label for="remote">Remote Work Availability</label>
+                <select id="remote" name="remote">
+                    <option value="">Any</option>
+                    <option value="on_site">On-site</option>
+                    <option value="remote">Remote</option>
+                    <option value="hybrid">Hybrid</option>
+                </select>
+            </div>
+            <!-- Filter Buttons -->
+            <div class="filter-buttons">
+                <button type="submit" class="apply-filters">Apply Filters</button>
+                <button type="reset" class="clear-filters">Clear Filters</button>
+            </div>
+        </form>
+    </aside>
+
+    <!-- Job Listings -->
+    <section class="job-results">
+        <h2>Job Results</h2>
+        <!-- Active Filters Display -->
+        <div class="active-filters">
+            <p>Showing results for:</p>
+            <!-- This is where active filters would be displayed dynamically -->
+        </div>
+        <!-- Placeholder Job Listings -->
+        <div class="job-item">
+            <h3>Front-End Developer</h3>
+            <p><strong>Company:</strong> Web Solutions Corp.</p>
+            <p><strong>Location:</strong> Remote</p>
+            <p><strong>Job Type:</strong> Full-time</p>
+            <p><strong>Experience Level:</strong> Mid-level</p>
+            <p>Design and implement user interfaces for our web applications.</p>
+            <a href="#apply" class="apply-btn">Apply Now</a>
+        </div>
+        <div class="job-item">
+            <h3>Cybersecurity Analyst</h3>
+            <p><strong>Company:</strong> SecureTech</p>
+            <p><strong>Location:</strong> Washington, D.C.</p>
+            <p><strong>Job Type:</strong> Contract</p>
+            <p><strong>Experience Level:</strong> Senior-level</p>
+            <p>Protect our networks and systems from cyber threats.</p>
+            <a href="#apply" class="apply-btn">Apply Now</a>
+        </div>
+        <div class="job-item">
+            <h3>Mobile App Developer</h3>
+            <p><strong>Company:</strong> AppCreators</p>
+            <p><strong>Location:</strong> Austin, TX</p>
+            <p><strong>Job Type:</strong> Full-time</p>
+            <p><strong>Experience Level:</strong> Entry-level</p>
+            <p>Create innovative mobile applications for Android and iOS.</p>
+            <a href="#apply" class="apply-btn">Apply Now</a>
+        </div>
+        <div class="job-item">
+            <h3>Data Engineer</h3>
+            <p><strong>Company:</strong> DataStream Inc.</p>
+            <p><strong>Location:</strong> Boston, MA</p>
+            <p><strong>Job Type:</strong> Full-time</p>
+            <p><strong>Experience Level:</strong> Mid-level</p>
+            <p>Develop and maintain our data pipelines and databases.</p>
+            <a href="#apply" class="apply-btn">Apply Now</a>
+        </div>
+        <div class="job-item">
+            <h3>IT Support Specialist</h3>
+            <p><strong>Company:</strong> TechAssist</p>
+            <p><strong>Location:</strong> Chicago, IL</p>
+            <p><strong>Job Type:</strong> Part-time</p>
+            <p><strong>Experience Level:</strong> Entry-level</p>
+            <p>Provide technical support to our clients and internal teams.</p>
+            <a href="#apply" class="apply-btn">Apply Now</a>
+        </div>
+    </section>
+</div>
+
+{% endblock %}

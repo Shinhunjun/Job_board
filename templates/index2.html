@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block title %} the Job Board {% endblock %}
+
+{% block content %}
+
+    <nav>
+    <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="/jobsearch">Job Search</a></li>
+        <li><a href="#cta">Get Started</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
+<section id="about" class="intro">
+    <h2>About Us</h2>
+    <p>[Your Job Board Name] is dedicated to connecting talented professionals with top companies in [Industry/Location]. We provide a streamlined platform for job seekers and employers to find the perfect match.</p>
+</section>
+
+<section id="features" class="features">
+    <h2>Features</h2>
+    <div class="feature-item">
+        <h3>Curated Job Listings</h3>
+        <p>Access a handpicked selection of the best job opportunities tailored to your expertise.</p>
+    </div>
+    <div class="feature-item">
+        <h3>User-Friendly Interface</h3>
+        <p>Easily navigate through job postings with our intuitive and responsive design.</p>
+    </div>
+    <div class="feature-item">
+        <h3>Expert Support</h3>
+        <p>Our team is here to assist you every step of the way, from application to onboarding.</p>
+    </div>
+</section>
+
+<section id="jobs" class="job-listings">
+    <h2>Latest Job Openings</h2>
+    <div class="job-item">
+        <h3>Software Engineer</h3>
+        <p><strong>Company:</strong> Tech Innovators Inc.</p>
+        <p><strong>Location:</strong> San Francisco, CA</p>
+        <p><strong>Job Category:</strong> Software Development</p>
+        <p><strong>Salary Range:</strong> $100,000 - $130,000</p>
+        <p>Join our dynamic team to develop cutting-edge software solutions.</p>
+        <a href="#apply" class="apply-btn">Apply Now</a>
+    </div>
+    <div class="job-item">
+        <h3>Data Scientist</h3>
+        <p><strong>Company:</strong> Data Insights LLC</p>
+        <p><strong>Location:</strong> New York, NY</p>
+        <p><strong>Job Category:</strong> Data Analysis</p>
+        <p><strong>Salary Range:</strong> $90,000 - $120,000</p>
+        <p>Analyze complex datasets to drive strategic decision-making.</p>
+        <a href="#apply" class="apply-btn">Apply Now</a>
+    </div>
+    <div class="job-item">
+        <h3>UX/UI Designer</h3>
+        <p><strong>Company:</strong> Creative Minds Studio</p>
+        <p><strong>Location:</strong> Austin, TX</p>
+        <p><strong>Job Category:</strong> Design</p>
+        <p><strong>Salary Range:</strong> $80,000 - $110,000</p>
+        <p>Design intuitive user experiences for our flagship products.</p>
+        <a href="#apply" class="apply-btn">Apply Now</a>
+    </div>
+    <div class="job-item">
+        <h3>DevOps Engineer</h3>
+        <p><strong>Company:</strong> CloudWorks</p>
+        <p><strong>Location:</strong> Seattle, WA</p>
+        <p><strong>Job Category:</strong> IT & Networking</p>
+        <p><strong>Salary Range:</strong> $95,000 - $125,000</p>
+        <p>Implement and manage scalable infrastructure solutions.</p>
+        <a href="#apply" class="apply-btn">Apply Now</a>
+    </div>
+    <div class="job-item">
+        <h3>Product Manager</h3>
+        <p><strong>Company:</strong> NextGen Solutions</p>
+        <p><strong>Location:</strong> Boston, MA</p>
+        <p><strong>Job Category:</strong> Product Management</p>
+        <p><strong>Salary Range:</strong> $105,000 - $135,000</p>
+        <p>Lead product development cycles from concept to launch.</p>
+        <a href="#apply" class="apply-btn">Apply Now</a>
+    </div>
+</section>
+
+<section id="cta" class="cta">
+    <h2>Ready to Take the Next Step?</h2>
+    <p>Join [Your Job Board Name] today and accelerate your career.</p>
+    <a href="#signup">Sign Up Now</a>
+</section>
+
+{% endblock %}
