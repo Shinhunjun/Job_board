@@ -3,6 +3,15 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__, template_folder='templates')
 
+#local connection:
+'''
+SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@localhost:{port}/{databasename}".format(
+    username="root",
+    password="12345678",
+    port="3306",
+    databasename="jobboard",
+)'''
+#prodaction connection:
 SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
     username="ddanielhasan",
     password="danieljun123!",
