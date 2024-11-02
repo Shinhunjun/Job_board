@@ -21,7 +21,7 @@
         <form method="GET" action="/jobsearch">
             <!-- Keywords -->
             <div class="filter-group">
-                <label for="keywords">Keywords</label>
+                <label for="keywords">Title Keywords</label>
                 <input type="text" id="keywords" name="keywords" placeholder="Job title, skills, company">
             </div>
             <!-- Location -->
@@ -127,6 +127,19 @@
     <section class="job-results">
         <h2>Job Results</h2>
         <!-- Active Filters Display -->
+        {% if jobs %}
+        {% for job in jobs %}
+            <div class="job-item">
+                <h3>{{ job.title }}</h3>
+                <p><strong>Company ID:</strong> {{ job.company_id }}</p>
+                <p><strong>Company:</strong> {{ job.company_name }}</p>
+                <p><strong>Job description:</strong> {{ job.description }}</p>
+                <a href="#apply" class="apply-btn">Apply Now</a>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No jobs found.</p>
+    {% endif %}
         <div class="active-filters">
             <p>Showing results for:</p>
             <!-- This is where active filters would be displayed dynamically -->

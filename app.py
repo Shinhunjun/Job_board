@@ -28,13 +28,34 @@ class Comment(db.Model):
     __tablename__ = "comments"
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String(4096))
+
+class Company(db.Model):
+    __tablename__ = 'companies'
+    company_id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, nullable=False)
+
+class Job(db.Model):
+    __tablename__ = 'jobs'
+    job_id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String, nullable=False)
+    description = db.Column(db.String, nullable=False)
+    company_id = db.Column(db.Integer, db.ForeignKey('companies.company_id'), nullable=False)
+    company = db.relationship('Company', backref='jobs')
 @app.route('/')
 def index():
     return render_template('index2.html')
 
-@app.route('/jobsearch')
+@app.route('/jobsearch', methods=['GET'])
 def jobsearch():
-    return render_template('jobsearch.html')
+    keywords = request.args.get('keywords', '')
+    # Query with filter if keywords are provided
+    jobs_query = Job.query.join(Company).add_columns(Job.job_id, Job.title, Job.description,Job.company_id, Company.name.label('company_name'))
+    if keywords:
+        jobs_query = jobs_query.filter(Job.title.ilike(f'%{keywords}%'))
+
+    # Add other filters here as needed, similar to the keywords filter
+    jobs = jobs_query.all()
+    return render_template('jobsearch.html', jobs=jobs)
 
 @app.route("/comments_page", methods=["GET", "POST"])
 def comments_page():
