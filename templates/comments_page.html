@@ -5,6 +5,14 @@
 
 {% block content %}
 
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/jobsearch">Job Search</a></li>
+        <li><a href="/comments_page">Comments page</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
 {% for comment in comments %}
     <div class="row">
         {{ comment.content }}

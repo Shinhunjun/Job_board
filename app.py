@@ -10,7 +10,8 @@ SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@localhos
     password="12345678",
     port="3306",
     databasename="jobboard",
-)'''
+)
+'''
 #prodaction connection:
 SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
     username="ddanielhasan",
