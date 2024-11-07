@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+
 {% block title %}Job Search{% endblock %}
 
 {% block content %}
@@ -123,25 +124,19 @@
     <section class="job-results">
         <h2>Job Results</h2>
         {% if jobs %}
-            {% for job in jobs %}
-                <div class="job-item">
-                    <h3>{{ job.title }}</h3>
-                    <p><strong>Company:</strong> {{ job.company_name }}</p>
-                    <p><strong>Location:</strong> {{ job.location }}</p>
-                    <p><strong>Job Type:</strong> {{ job.job_type }}</p>
-                    <p><strong>Industry:</strong> {{ job.industry }}</p>
-                    <p><strong>Experience Level:</strong> {{ job.experience_level }}</p>
-                    <p><strong>Salary:</strong> ${{ job.salary_min }} - ${{ job.salary_max }}</p>
-                    <p><strong>Posted Date:</strong> {{ job.posted_date }}</p>
-                    <p><strong>Education Level:</strong> {{ job.education_level }}</p>
-                    <p><strong>Remote Work:</strong> {{ job.remote }}</p>
-                    <p><strong>Job Description:</strong> {{ job.description }}</p>
-                    <a href="#apply" class="apply-btn">Apply Now</a>
-                </div>
-            {% endfor %}
-        {% else %}
-            <p>No jobs found.</p>
-        {% endif %}
+        {% for job in jobs %}
+            <div class="job-item">
+                <h3>{{ job.title }}</h3>
+                <p><strong>Company ID:</strong> {{ job.company_id }}</p>
+                <p><strong>Company:</strong> {{ job.company_name }}</p>
+                <p><strong>Job description:</strong> {{ job.description }}</p>
+                <a href="#apply" class="apply-btn">Apply Now</a>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No jobs found.</p>
+    {% endif %}
     </section>
 </div>
+
 {% endblock %}
