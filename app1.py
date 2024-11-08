@@ -51,12 +51,18 @@ class Comment(db.Model):
 
 # CSV data loading and insertion function
 base_dir = os.path.dirname(os.path.abspath(__file__))
-csv_path = os.path.join(base_dir, 'db_test.csv')
+csv_path = os.path.join(base_dir, 'db_test_updated.csv')
 
-def load_data_from_csv():
+def update_data_from_csv():
     data = pd.read_csv(csv_path)
+    
+    # Process company data
+    csv_company_ids = set(data['company_id'].unique())
+    db_company_ids = {company.company_id for company in Company.query.all()}
+
+    # Insert companies from CSV that don't exist in the database
     for _, row in data.iterrows():
-        # Insert or update company information
+        # If company already exists, update it; otherwise, add it
         existing_company = Company.query.get(row['company_id'])
         if not existing_company:
             company = Company(
@@ -67,26 +73,71 @@ def load_data_from_csv():
             )
             db.session.add(company)
         else:
+            # Update existing company data
             existing_company.name = row['company_name']
             existing_company.industry = row['industry']
             existing_company.size = row['company_size']
+
+    # Remove companies in the database that are not in the CSV
+    for company_id in db_company_ids - csv_company_ids:
+        Company.query.filter_by(company_id=company_id).delete()
+
+    # Process job data
+    csv_job_ids = set(data['job_id'].unique())
+    db_job_ids = {job.job_id for job in Job.query.all()}
+
+    # Job data processing
+    for _, row in data.iterrows():
+        existing_job = Job.query.get(row['job_id'])
         
-        # Insert job information
-        job = Job(
-            job_id=row['job_id'],
-            title=row['title'],
-            description=row['description'],
-            company_id=row['company_id'],
-            location=row['location'],
-            job_type=row['job_type'],
-            experience_level=row['experience_level'],
-            salary_min=row['salary_min'] if not pd.isna(row['salary_min']) else None,
-            salary_max=row['salary_max'] if not pd.isna(row['salary_max']) else None,
-            posted_date=datetime.strptime(row['posted_date'], '%Y-%m-%d').date() if not pd.isna(row['posted_date']) else None,
-            education_level=row['education_level'],
-            remote=row['remote']
-        )
-        db.session.add(job)
+        if not existing_job:
+            # Add new job if it doesn't exist
+            job = Job(
+                job_id=row['job_id'],
+                title=row['title'],
+                description=row['description'],
+                company_id=row['company_id'],
+                location=row['location'],
+                job_type=row['job_type'],
+                experience_level=row['experience_level'],
+                salary_min=row['salary_min'] if not pd.isna(row['salary_min']) else None,
+                salary_max=row['salary_max'] if not pd.isna(row['salary_max']) else None,
+                posted_date=datetime.strptime(row['posted_date'], '%Y-%m-%d').date() if not pd.isna(row['posted_date']) else None,
+                education_level=row['education_level'],
+                remote=row['remote']
+            )
+            db.session.add(job)
+        else:
+            # Update only if there are differences in the existing data
+            if (
+                existing_job.title != row['title'] or
+                existing_job.description != row['description'] or
+                existing_job.company_id != row['company_id'] or
+                existing_job.location != row['location'] or
+                existing_job.job_type != row['job_type'] or
+                existing_job.experience_level != row['experience_level'] or
+                existing_job.salary_min != (row['salary_min'] if not pd.isna(row['salary_min']) else None) or
+                existing_job.salary_max != (row['salary_max'] if not pd.isna(row['salary_max']) else None) or
+                existing_job.posted_date != (datetime.strptime(row['posted_date'], '%Y-%m-%d').date() if not pd.isna(row['posted_date']) else None) or
+                existing_job.education_level != row['education_level'] or
+                existing_job.remote != row['remote']
+            ):
+                # Update values only if they differ from existing data
+                existing_job.title = row['title']
+                existing_job.description = row['description']
+                existing_job.company_id = row['company_id']
+                existing_job.location = row['location']
+                existing_job.job_type = row['job_type']
+                existing_job.experience_level = row['experience_level']
+                existing_job.salary_min = row['salary_min'] if not pd.isna(row['salary_min']) else None
+                existing_job.salary_max = row['salary_max'] if not pd.isna(row['salary_max']) else None
+                existing_job.posted_date = datetime.strptime(row['posted_date'], '%Y-%m-%d').date() if not pd.isna(row['posted_date']) else None
+                existing_job.education_level = row['education_level']
+                existing_job.remote = row['remote']
+
+    # Remove job entries in the database that are not in the CSV
+    for job_id in db_job_ids - csv_job_ids:
+        Job.query.filter_by(job_id=job_id).delete()
 
     db.session.commit()
 
@@ -94,7 +145,7 @@ def load_data_from_csv():
 with app.app_context():
     db.drop_all()
     db.create_all()
-    load_data_from_csv()
+    update_data_from_csv()
 
 # Basic route
 @app.route('/')

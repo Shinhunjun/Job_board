@@ -1,0 +1,11 @@
+job_id,title,description,company_id,company_name,location,job_type,industry,experience_level,salary_min,salary_max,posted_date,company_size,education_level,remote
+1,Front-End Developer,Design and implement user interfaces,101,Web Solutions Corp.,Remote,full_time,it,mid,50000,70000,2023-10-15,medium,bachelors,remote
+2,Cybersecurity Analyst,Protect networks from cyber threats,102,SecureTech,"Washington, D.C.",contract,healthcare,senior,65000,95000,2023-10-20,large,bachelors,on_site
+4,Data Engineer,Develop and maintain data pipelines,104,DataStream Inc.,"Boston, MA",full_time,finance,mid,70000,95000,2023-11-01,large,masters,hybrid
+5,IT Support Specialist,Provide technical support,105,TechAssist,"Chicago, IL",part_time,it,entry,30000,40000,2023-11-03,small,high_school,on_site
+6,Project Manager,Manage project timelines and resources,106,Global Ventures,"New York, NY",full_time,finance,mid,80000,110000,2023-09-18,medium,bachelors,hybrid
+7,Marketing Coordinator,Coordinate marketing campaigns,107,Creative Minds,Remote,internship,marketing,entry,20000,25000,2023-08-01,small,high_school,remote
+8,Senior Software Engineer,Develop software for clients,108,InnoTech Solutions,"San Francisco, CA",full_time,it,senior,120000,150000,2023-10-10,large,masters,remote
+9,Human Resources Specialist,Handle recruitment and onboarding,109,PeopleFirst,"Boston, MA",full_time,hr,mid,60000,80000,2023-09-05,medium,bachelors,on_site
+10,Graphic Designer,Create visual content for clients,110,DesignHub,Remote,freelance,design,entry,35000,50000,2023-09-30,small,bachelors,remote
+6,Machine Learning Engineer,Develop and deploy machine learning models,106,AI Innovators,"San Francisco, CA",full_time,technology,senior,120000,150000,2023-11-05,large,masters,hybrid
