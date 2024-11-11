@@ -3,22 +3,28 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__, template_folder='templates')
 
-#local connection:
-'''
+#daniel local connection:
 SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@localhost:{port}/{databasename}".format(
     username="root",
     password="12345678",
     port="3306",
-    databasename="jobboard",
+    databasename="jobboard2",
 )
 '''
+#Jun local connection:
+SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@localhost:{port}/{databasename}".format(
+    username="root",
+    password="12345678",
+    port="3306",
+    databasename="jobboard2",
+)
 #prodaction connection:
 SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
     username="ddanielhasan",
     password="danieljun123!",
     hostname="ddanielhasan.mysql.pythonanywhere-services.com",
     databasename="ddanielhasan$comments",
-)
+)'''
 app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
 app.config["SQLALCHEMY_POOL_RECYCLE"] = 299
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
