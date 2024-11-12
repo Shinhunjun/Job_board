@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__, template_folder='templates')
 
+
 #daniel local connection:
 SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@localhost:{port}/{databasename}".format(
     username="root",
@@ -12,19 +13,24 @@ SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@localhos
 )
 '''
 #Jun local connection:
+
 SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@localhost:{port}/{databasename}".format(
     username="root",
-    password="12345678",
+    password="Tlsguswns97!",
     port="3306",
-    databasename="jobboard2",
+    databasename="jobboard",
 )
-#prodaction connection:
-SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
-    username="ddanielhasan",
-    password="danieljun123!",
-    hostname="ddanielhasan.mysql.pythonanywhere-services.com",
-    databasename="ddanielhasan$comments",
-)'''
+'''
+# #prodaction connection:
+# SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
+#     username="ddanielhasan",
+#     password="danieljun123!",
+#     hostname="ddanielhasan.mysql.pythonanywhere-services.com",
+#     databasename="ddanielhasan$comments",
+# )
+'''
+'''
+
 app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
 app.config["SQLALCHEMY_POOL_RECYCLE"] = 299
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False

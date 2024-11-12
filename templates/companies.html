@@ -21,7 +21,7 @@
             <img src="{{ company.logo_url }}" alt="{{ company.name }} logo" class="company-logo">
             {% endif %}
             <h2 class="company-name">{{ company.name }}</h2>
-            <p class="company-description">{{ company.description[:150] }}...</p>
+            <p class="company-description">{{ (company.description or '')[:150] }}...</p>
             <a href="{{ url_for('company_detail', company_id=company.company_id) }}" class="apply-btn view-company-btn">View Details</a>
         </div>
         {% endfor %}

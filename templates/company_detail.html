@@ -31,7 +31,7 @@
             <div class="locations">
                 <h3>Locations</h3>
                 <ul>
-                    {% for location in locations %}
+                    {% for location in company.locations %}
                     <li>{{ location.city }}, {{ location.state }}, {{ location.country }}</li>
                     {% endfor %}
                 </ul>
@@ -40,7 +40,7 @@
             <div class="industries">
                 <h3>Industries</h3>
                 <ul>
-                    {% for industry in industries %}
+                    {% for industry in company.industries %} 
                     <li>{{ industry.industry_name }}</li>
                     {% endfor %}
                 </ul>
