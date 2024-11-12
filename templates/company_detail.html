@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}{{ company.name }} - Company Details{% endblock %}
+{% block content %}
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/jobsearch">Job Search</a></li>
+        <li><a href="/companies">Companies</a></li>
+        <li><a href="/comments_page">Comments page</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+<section class="company-profile-section">
+    <div class="company-header">
+        {% if company.logo_url %}
+        <img src="{{ company.logo_url }}" alt="{{ company.name }} logo" class="company-logo-large">
+        {% endif %}
+        <h1 class="company-name">{{ company.name }}</h1>
+        {% if company.website %}
+        <a href="{{ company.website }}" target="_blank" class="apply-btn company-website">Visit Website</a>
+        {% endif %}
+    </div>
+
+    <div class="company-info">
+        <div class="company-description">
+            <h2>About the Company</h2>
+            <p>{{ company.description }}</p>
+        </div>
+
+        <div class="company-details">
+            <div class="locations">
+                <h3>Locations</h3>
+                <ul>
+                    {% for location in locations %}
+                    <li>{{ location.city }}, {{ location.state }}, {{ location.country }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="industries">
+                <h3>Industries</h3>
+                <ul>
+                    {% for industry in industries %}
+                    <li>{{ industry.industry_name }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="company-jobs">
+        <h2>Open Positions</h2>
+        {% if jobs %}
+            {% for job in jobs %}
+            <div class="job-item">
+                <h3>{{ job.title }}</h3>
+                <p>{{ job.description }}</p>
+                <a href="/jobsearch?company_id={{ company.company_id }}" class="apply-btn">View Job Details</a>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>No open positions at this time.</p>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

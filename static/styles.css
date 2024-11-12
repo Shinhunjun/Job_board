@@ -330,3 +330,117 @@ footer a:hover {
         margin-bottom: 20px;
     }
 }
+
+/* Page Titles */
+.page-title {
+    font-size: 2.5em;
+    font-weight: 700;
+    color: #333;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.page-subtitle {
+    font-size: 1.2em;
+    color: #666;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* Companies Grid */
+.companies-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Company Card */
+.company-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    padding: 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    width: 250px;
+}
+
+.company-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.company-logo {
+    max-width: 100px;
+    margin: 0 auto 10px;
+    display: block;
+}
+
+.company-name {
+    font-size: 1.5em;
+    color: #333;
+    margin: 10px 0;
+}
+
+.company-description {
+    font-size: 0.95em;
+    color: #666;
+    margin-bottom: 15px;
+}
+/* Company Header */
+.company-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.company-logo-large {
+    max-width: 150px;
+    margin-bottom: 20px;
+}
+
+.company-info {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.company-description h2, .company-details h3 {
+    font-size: 1.8em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.company-details {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.company-details ul {
+    padding-left: 20px;
+    list-style-type: disc;
+}
+
+.company-jobs {
+    max-width: 800px;
+    margin: 40px auto;
+}
+
+.company-jobs h2 {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Sidebar styling for company details */
+.locations, .industries {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 45%;
+}

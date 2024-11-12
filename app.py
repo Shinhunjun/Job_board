@@ -39,6 +39,16 @@ class Company(db.Model):
     __tablename__ = 'companies'
     company_id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
+    description = db.Column(db.Text)
+    website = db.Column(db.String(255))
+    logo_url = db.Column(db.String(255))
+    jobs = db.relationship('Job', back_populates='company', lazy=True)
+    locations = db.relationship('Location',
+                                secondary='company_locations',
+                                backref=db.backref('companies', lazy=True))
+    industries = db.relationship('Industry',
+                                 secondary='company_industries',
+                                 backref=db.backref('companies', lazy=True))
 
 class Job(db.Model):
     __tablename__ = 'jobs'
@@ -46,7 +56,29 @@ class Job(db.Model):
     title = db.Column(db.String, nullable=False)
     description = db.Column(db.String, nullable=False)
     company_id = db.Column(db.Integer, db.ForeignKey('companies.company_id'), nullable=False)
-    company = db.relationship('Company', backref='jobs')
+    company = db.relationship('Company', back_populates='jobs')
+
+class Location(db.Model):
+    __tablename__ = 'locations'
+    location_id = db.Column(db.Integer, primary_key=True)
+    city = db.Column(db.String(100))
+    state = db.Column(db.String(100))
+    country = db.Column(db.String(100), nullable=False)
+
+class Industry(db.Model):
+    __tablename__ = 'industries'
+    industry_id = db.Column(db.Integer, primary_key=True)
+    industry_name = db.Column(db.String(100), nullable=False)
+
+company_locations = db.Table('company_locations',
+    db.Column('company_id', db.Integer, db.ForeignKey('companies.company_id'), primary_key=True),
+    db.Column('location_id', db.Integer, db.ForeignKey('locations.location_id'), primary_key=True)
+)
+
+company_industries = db.Table('company_industries',
+    db.Column('company_id', db.Integer, db.ForeignKey('companies.company_id'), primary_key=True),
+    db.Column('industry_id', db.Integer, db.ForeignKey('industries.industry_id'), primary_key=True)
+)
 @app.route('/')
 def index():
     return render_template('index2.html')
@@ -62,6 +94,20 @@ def jobsearch():
     # Add other filters here as needed, similar to the keywords filter
     jobs = jobs_query.all()
     return render_template('jobsearch.html', jobs=jobs)
+
+@app.route('/companies')
+def companies():
+    companies = Company.query.all()
+    return render_template('companies.html', companies=companies)
+@app.route('/company/<int:company_id>')
+def company_detail(company_id):
+    company = Company.query.get_or_404(company_id)
+    # No need for extra queries since we have relationships defined
+    return render_template('company_detail.html',
+                         company=company,
+                         jobs=company.jobs,
+                         locations=company.locations,
+                         industries=company.industries)
 
 @app.route("/comments_page", methods=["GET", "POST"])
 def comments_page():
