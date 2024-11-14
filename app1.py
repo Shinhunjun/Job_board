@@ -2,10 +2,12 @@ from flask import Flask, render_template, redirect, request, url_for
 from flask_sqlalchemy import SQLAlchemy
 import pandas as pd
 import numpy as np
+from sqlalchemy import ForeignKey
+from sqlalchemy.orm import relationship
 
 app = Flask(__name__, template_folder='templates')
 
-SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@localhost:{port}/{databasename}".format(
+SQLALCHEMY_DATABASE_URI = "mysql+pymysql://{username}:{password}@localhost:{port}/{databasename}".format(
     username="root",
     password="Tlsguswns97!",
     port="3306",
@@ -36,7 +38,6 @@ class Company(db.Model):
     industries = db.relationship('Industry',
                                  secondary='company_industries',
                                  backref=db.backref('companies', lazy=True))
-
 
 
 class Job(db.Model):
@@ -73,50 +74,54 @@ def load_excel_data_to_db(excel_path):
     df = pd.read_excel(excel_path)
 
     for _, row in df.iterrows():
-        # 웹사이트 URL 길이 확인 및 자르기
-        website = row['company_website-href']
+
+        website = row['website']
         if pd.notna(website) and len(website) > 1024:
-            website = website[:1024]  # 1024자를 초과할 경우 잘라냄
+            website = website[:1024]  
 
-        # 회사 정보 생성
-        company = Company(
-            name=row['company_title'],
-            description=row['company_overview_cleaned'] if pd.notna(row['company_overview_cleaned']) else None,
-            website=website,
-            logo_url=row['company_logo-src']
-        )
-        db.session.add(company)
-        db.session.flush()  # company_id 생성 후 사용 가능
-
-        # 위치 정보 처리 및 추가
-        if pd.notna(row['company_location']):
-            location_parts = row['company_location'].split(',')
-            location = Location(
-                city=location_parts[0].strip() if len(location_parts) > 0 else None,
-                state=location_parts[1].strip() if len(location_parts) > 1 else None,
-                country=location_parts[2].strip() if len(location_parts) > 2 else ""  # country가 없으면 빈 문자열로 설정
+        # Check if company already exists
+        company = Company.query.filter_by(name=row['name']).first()
+        if not company:
+            company = Company(
+                name=row['name'],
+                description=row['description'] if pd.notna(row['description']) else None,
+                website=website,
+                logo_url=row['logo_url']
             )
-            db.session.add(location)
-            db.session.flush()  # location_id 생성 후 사용 가능
+            db.session.add(company)
+            db.session.flush()  # company_id 생성 후 사용 가능
 
-            # company와 location 연결
-            db.session.execute(company_locations.insert().values(
-                company_id=company.company_id, location_id=location.location_id
-            ))
+        # Location handling
+        if pd.notna(row['location']):
+            location_parts = row['location'].split(',')
+            city = location_parts[0].strip() if len(location_parts) > 0 else None
+            state = location_parts[1].strip() if len(location_parts) > 1 else None
+            country = location_parts[2].strip() if len(location_parts) > 2 else ""
 
-        # 산업 정보 처리 및 추가
-        if pd.notna(row['primary_company_category']):
-            industry = Industry(industry_name=row['primary_company_category'])
-            db.session.add(industry)
-            db.session.flush()  # industry_id 생성 후 사용 가능
+            location = Location.query.filter_by(city=city, state=state, country=country).first()
+            if not location:
+                location = Location(city=city, state=state, country=country)
+                db.session.add(location)
+                db.session.flush()
 
-            # company와 industry 연결
-            db.session.execute(company_industries.insert().values(
-                company_id=company.company_id, industry_id=industry.industry_id
-            ))
+            if location not in company.locations:
+                company.locations.append(location)
+
+
+        # Industry handling
+        if pd.notna(row['industry_name']):
+            industry = Industry.query.filter_by(industry_name=row['industry_name']).first()
+            if not industry:
+                industry = Industry(industry_name=row['industry_name'])
+                db.session.add(industry)
+                db.session.flush()
+
+            if industry not in company.industries:
+                company.industries.append(industry)
 
     # 변경 사항 커밋
     db.session.commit()
+
     
 # Routes and application logic
 @app.route('/')

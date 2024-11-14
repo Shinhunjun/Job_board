@@ -13,6 +13,9 @@
         <li><a href="#contact">Contact</a></li>
     </ul>
 </nav>
+
+
+<section class="job-results">
 {% for comment in comments %}
     <div class="row">
         {{ comment.content }}
@@ -38,5 +41,5 @@
                 <input type="submit" value="Post comment">
             </form>
         </div>
-
+</section>
 {% endblock %}

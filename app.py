@@ -125,6 +125,10 @@ def comments_page():
     db.session.commit()
     return redirect(url_for('comments_page'))
 
+@app.route('/tease_neta')
+def tease_neta():
+    return render_template('tease_neta.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
 
