@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}{{ job.title }} Details{% endblock %}
+
+{% block content %}
+
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/jobsearch">Job Search</a></li>
+        <li><a href="/companies">Companies</a></li>
+        <li><a href="/upload">Upload</a></li>
+    </ul>
+</nav>
+
+<div class="job-details-container">
+    <div class="job-header">
+        <img src="{{ job.company_logo }}" alt="{{ job.company_name }}" class="company-logo-large" />
+        <h1>{{ job.title }}</h1>
+    </div>
+    <p><strong>Company:</strong> {{ job.company_name }}</p>
+    <p><strong>Location:</strong> {{ job.location_city }}, {{ job.location_state }}, {{ job.location_country }}</p>
+    <p><strong>Job Type:</strong> {{ job.job_type }}</p>
+    <p><strong>Category:</strong> {{ job.job_category }}</p>
+    <p><strong>Salary:</strong> ${{ job.salary_min }} - ${{ job.salary_max }}</p>
+    <p><strong>Posted Date:</strong> {{ job.posted_date }}</p>
+    <p><strong>Closing Date:</strong> {{ job.closing_date }}</p>
+    <p><strong>Description:</strong> {{ job.description }}</p>
+    <a href="#apply" class="apply-btn">Apply Now</a>
+
+</div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Upload Excel File{% endblock %}
+
+{% block content %}
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/jobsearch">Job Search</a></li>
+        <li><a href="/companies">Companies</a></li>
+        <li><a href="/upload">Upload</a></li>
+    </ul>
+</nav>
+
+<<div class="upload-container">
+    <h2 class="upload-title">Upload a Company Excel File</h2>
+    <p class="upload-description">Upload an Excel file (.xls or .xlsx) to populate the database with company data.</p>
+
+    <form method="POST" action="{{ url_for('upload_file') }}" enctype="multipart/form-data" class="upload-form">
+        <input type="hidden" name="upload_type" value="company">
+        <div class="file-input-wrapper">
+            <input type="file" name="file" id="file-upload-company" class="file-input" required>
+        </div>
+        <button type="submit" class="upload-btn">Upload Company Data</button>
+    </form>
+</div>
+<div class="upload-container">
+    <h2 class="upload-title">Upload a Job Excel File</h2>
+    <p class="upload-description">Upload an Excel file (.xls or .xlsx) to populate the database with job data.</p>
+
+    <form method="POST" action="{{ url_for('upload_file') }}" enctype="multipart/form-data" class="upload-form">
+        <input type="hidden" name="upload_type" value="job">
+        <div class="file-input-wrapper">
+            <input type="file" name="file" id="file-upload-job" class="file-input" required>
+        </div>
+        <button type="submit" class="upload-btn">Upload Job Data</button>
+    </form>
+</div>
+
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul class="flashes">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
+{% endblock %}
